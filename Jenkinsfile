@@ -1,23 +1,19 @@
 pipeline { 
     agent any 
-    options {
-        skipStagesAfterUnstable()
-    }
     stages {
-        stage('Build') { 
+        stage('Clean') { 
             steps { 
-                sh 'make' 
+                bat "mvn clean"
             }
         }
         stage('Test'){
             steps {
-                sh 'make check'
-                junit 'reports/**/*.xml' 
+                bat "mvn test"
             }
         }
-        stage('Deploy') {
+        stage('Package') {
             steps {
-                sh 'make publish'
+                bat "mvn package"
             }
         }
     }
