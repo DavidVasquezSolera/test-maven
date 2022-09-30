@@ -16,7 +16,7 @@ pipeline {
                 bat "mvn package"
             }
         }
-        stage('Package') {
+        stage('Results') {
            steps {
                input "Do you want to save the changes?"
                junit "**/target/surefire-reports/TEST-*.xml"
